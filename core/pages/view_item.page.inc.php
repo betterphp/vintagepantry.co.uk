@@ -48,7 +48,7 @@ $preview_index = (isset($_GET['preview_index']) && isset($images[$_GET['preview_
 									'currency_code'	=> 'GBP',
 									'no_shipping'	=> 2,
 									'notify_url'	=> config::BASE_URL . 'paypal_listener.php',
-									'return'		=> config::BASE_URL . 'payment_complete.html?item_id=' . $item->get_id(),
+									'return'		=> config::BASE_URL . 'shop.html?category_id=' . $item->get_category()->get_id(),
 									'cancel_return'	=> config::BASE_URL . 'view_item.html?item_id=' . $item->get_id(),
 								));
 								
