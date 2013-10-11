@@ -1,0 +1,13 @@
+# Eclipse
+.settings
+.buildpath
+.project
+
+# User files
+/core/user_content
+
+# System files
+/core/config.inc.php
+/core/error.log
+/core/tmp
+/core/*.pem
