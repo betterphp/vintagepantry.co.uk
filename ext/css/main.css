@@ -24,8 +24,23 @@ p {
 	padding:	4px 0px;
 }
 
-p.centre {
-	text-align:	center;
+p.handwritten {
+	font-family:	'jinkyregular', serif;
+	font-size:		30px;
+	line-height:	30px;
+}
+
+p.handwritten.large {
+	font-size:		50px;
+	line-height:	30px;
+}
+
+p.handwritten.title {
+	margin:		10px 0px 20px 0px;
+}
+
+p.handwritten.signature {
+	margin-top:		20px;
 }
 
 h1, h2, h3, h4, h5 {
