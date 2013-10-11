@@ -10,7 +10,6 @@ html {
 }
 
 body {
-	/*background:		#eccfaf;*/
 	background:		#f7f1e9;
 }
 
@@ -359,19 +358,25 @@ a.button:first-child, input.button:first-child {
 	margin-left:	0px;
 }
 
-#about-image-container {
-	overflow:	auto;
-}
-
-#about-image-container img {
+#about-image {
 	float:		left;
-	width:		258px;
-	margin:		0px 10px 0px 0px;
-	border:		solid 1px #bbb;
+	width:		450px;
+	height:		436px;
+	background:	url('../img/about.png') no-repeat;
+	
+	box-shadow:			0px 0px 5px 1px #412405 inset;
+	-moz-box-shadow:	0px 0px 5px 1px #412405 inset;
+	-webkit-box-shadow:	0px 0px 5px 1px #412405 inset;
+	
+	border-radius:			5px;
+	-moz-border-radius:		5px;
+	-webkit-border-radius:	5px;
 }
 
-#about-image-container img:last-child {
-	margin:		0px;
+#about-text {
+	float:			right;
+	width:			535px;
+	line-height:	22px;
 }
 
 div.shop-items {
