@@ -42,6 +42,10 @@ $items = item::fetch_all($category_id, $search_term);
 <div class="shop-items">
 	<?php
 	
+	if (empty($items)){
+		echo '<div class="msg error">There are no products to display.</div>';
+	}
+	
 	foreach ($items as $item){
 		?>
 		<div class="shop-product">
