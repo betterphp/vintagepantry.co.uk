@@ -3,6 +3,8 @@
 if (isset($_POST['titles'], $_POST['category_ids'], $_POST['prices'], $_POST['weights'], $_POST['quantities'], $_POST['descriptions'], $_FILES['images']['name'])){
 	$total_items = count($_POST['titles']);
 	
+	set_time_limit(0);
+	
 	for ($i = 0; $i < $total_items; ++$i){
 		$title = $_POST['titles'][$i];
 		$category_id = $_POST['category_ids'][$i];

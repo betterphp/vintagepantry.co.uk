@@ -35,6 +35,8 @@ if (isset($_POST['title'], $_POST['category_id'], $_POST['price'], $_POST['weigh
 		$item->update_details($_POST['title'], $category, $_POST['price'], $_POST['weight'], $_POST['quantity'], $_POST['description']);
 		
 		if (!empty($_FILES['images']['name'][0])){
+			set_time_limit(0);
+			
 			$item->set_images($_FILES['images']['tmp_name']);
 		}
 	}
