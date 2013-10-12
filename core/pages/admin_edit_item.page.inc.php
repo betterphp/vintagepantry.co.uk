@@ -33,6 +33,10 @@ if (isset($_POST['title'], $_POST['category_id'], $_POST['price'], $_POST['weigh
 	
 	if (empty($errors)){
 		$item->update_details($_POST['title'], $category, $_POST['price'], $_POST['weight'], $_POST['quantity'], $_POST['description']);
+		
+		if (!empty($_FILES['images']['name'][0])){
+			$item->set_images($_FILES['images']['tmp_name']);
+		}
 	}
 }
 
@@ -90,6 +94,10 @@ if (isset($errors)){
 	<div>
 		<label>Quantity</label>
 		<input type="text" class="text" name="quantity" value="<?php echo htmlentities((isset($_POST['quantity'])) ? $_POST['quantity'] : $item->get_quantity()); ?>" />
+	</div>
+	<div>
+		<label>Images</label>
+		<input type="file" multiple="multiple" name="images[]" />
 	</div>
 	<div>
 		<label>Description</label>

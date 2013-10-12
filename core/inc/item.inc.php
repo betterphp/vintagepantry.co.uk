@@ -117,6 +117,81 @@ class item {
 	}
 	
 	/**
+	 * Resizes an image cropping to best fit.
+	 *
+	 * @param resource $source The source image.
+	 * @param int $width The new width.
+	 * @param int $height The new height.
+	 * @return resource A GD image resource
+	 */
+	private static function resize_image($source, $width, $height){
+		$source_width = imagesx($source);
+		$source_height = imagesy($source);
+		$source_aspect = round($source_width / $source_height, 1);
+		$target_aspect = round($width / $height, 1);
+	
+		$resized = imagecreatetruecolor($width, $height);
+	
+		if ($source_aspect < $target_aspect){
+			// higher
+			$new_size = array($width, ($width / $source_width) * $source_height);
+			$source_pos = array(0, (($new_size[1] - $height) * ($source_height / $new_size[1])) / 2);
+		}else if ($source_aspect > $target_aspect){
+			// wider
+			$new_size = array(($height / $source_height) * $source_width, $height);
+			$source_pos = array((($new_size[0] - $width) * ($source_width / $new_size[0])) / 2, 0);
+		}else{
+			// same shape
+			$new_size = array($width, $height);
+			$source_pos = array(0, 0);
+		}
+	
+		if ($new_size[0] < 1) $new_size[0] = 1;
+		if ($new_size[1] < 1) $new_size[1] = 1;
+	
+		imagecopyresampled($resized, $source, 0, 0, $source_pos[0], $source_pos[1], $new_size[0], $new_size[1], $source_width, $source_height);
+	
+		return $resized;
+	}
+	
+	/**
+	 * Sets the images for the item.
+	 * 
+	 * @param array $files An array of image files.
+	 */
+	public function set_images($files){
+		$image_dir = "{$GLOBALS['core_path']}/user_content/item_images/{$this->id}";
+		
+		if (!file_exists($image_dir)){
+			mkdir($image_dir, 0750);
+		}
+		
+		foreach (glob("{$image_dir}/*.png") as $existing){
+			unlink($existing);
+		}
+		
+		foreach ($files as $key => $image_file){
+			$image = imagecreatefromstring(file_get_contents($image_file));
+				
+			$preview = self::resize_image($image, item_image::PREVIEW_WIDTH, item_image::PREVIEW_HEIGHT);
+			$cover = self::resize_image($image, item_image::COVER_WIDTH, item_image::COVER_HEIGHT);
+			$thumb = self::resize_image($image, item_image::THUMB_WIDTH, item_image::THUMB_HEIGHT);
+				
+			imagepng($preview, "{$image_dir}/{$key}_preview.png", 9);
+			imagepng($cover, "{$image_dir}/{$key}_cover.png", 9);
+			imagepng($thumb, "{$image_dir}/{$key}_thumb.png", 9);
+			imagepng($image, "{$image_dir}/{$key}_full.png", 9);
+				
+			imagedestroy($preview);
+			imagedestroy($cover);
+			imagedestroy($image);
+			imagedestroy($thumb);
+				
+			unlink($image_file);
+		}
+	}
+	
+	/**
 	 * Gets the item price.
 	 * 
 	 * @return float The price.
@@ -339,55 +414,16 @@ class item {
 	}
 	
 	/**
-	 * Resizes an image cropping to best fit. 
-	 * 
-	 * @param resource $source The source image.
-	 * @param int $width The new width.
-	 * @param int $height The new height.
-	 * @return resource A GD image resource
-	 */
-	private static function resize_image($source, $width, $height){
-		$source_width = imagesx($source);
-		$source_height = imagesy($source);
-		$source_aspect = round($source_width / $source_height, 1);
-		$target_aspect = round($width / $height, 1);
-		
-		$resized = imagecreatetruecolor($width, $height);
-		
-		if ($source_aspect < $target_aspect){
-			// higher
-			$new_size = array($width, ($width / $source_width) * $source_height);
-			$source_pos = array(0, (($new_size[1] - $height) * ($source_height / $new_size[1])) / 2);
-		}else if ($source_aspect > $target_aspect){
-			// wider
-			$new_size = array(($height / $source_height) * $source_width, $height);
-			$source_pos = array((($new_size[0] - $width) * ($source_width / $new_size[0])) / 2, 0);
-		}else{
-			// same shape
-			$new_size = array($width, $height);
-			$source_pos = array(0, 0);
-		}
-		
-		if ($new_size[0] < 1) $new_size[0] = 1;
-		if ($new_size[1] < 1) $new_size[1] = 1;
-		
-		imagecopyresampled($resized, $source, 0, 0, $source_pos[0], $source_pos[1], $new_size[0], $new_size[1], $source_width, $source_height);
-		
-		return $resized;
-	}
-	
-	/**
 	 * Adds a new item to the shop.
 	 * 
 	 * @param category $category The ID of the category the item will be in.
 	 * @param string $title The title of the item.
 	 * @param string $description The item description.
-	 * @param array $images The images of the item.
 	 * @param float $price The item price.
 	 * @param int $weight The item weight (in grams).
 	 * @param int $quantity The number of items available.
 	 */
-	public static function add_new($category, $title, $description, $images, $price, $weight, $quantity){
+	public static function add_new($category, $title, $description, $price, $weight, $quantity){
 		$mysql = mysql_connection::get_instance();
 		
 		$sql = 'INSERT INTO `items` (`category_id`, `user_id`, `item_title`, `item_description`, `item_price`, `item_weight`, `item_quantity`, `item_time_created`)
@@ -399,32 +435,6 @@ class item {
 		$stmt->close();
 		
 		$item_id = $mysql->insert_id;
-		
-		$image_dir = "{$GLOBALS['core_path']}/user_content/item_images/{$item_id}";
-		
-		if (!file_exists($image_dir)){
-			mkdir($image_dir, 0750);
-		}
-		
-		foreach ($images as $key => $image_file){
-			$image = imagecreatefromstring(file_get_contents($image_file));
-			
-			$preview = self::resize_image($image, item_image::PREVIEW_WIDTH, item_image::PREVIEW_HEIGHT);
-			$cover = self::resize_image($image, item_image::COVER_WIDTH, item_image::COVER_HEIGHT);
-			$thumb = self::resize_image($image, item_image::THUMB_WIDTH, item_image::THUMB_HEIGHT);
-			
-			imagepng($preview, "{$image_dir}/{$key}_preview.png");
-			imagepng($cover, "{$image_dir}/{$key}_cover.png");
-			imagepng($thumb, "{$image_dir}/{$key}_thumb.png");
-			imagepng($image, "{$image_dir}/{$key}_full.png");
-			
-			imagedestroy($preview);
-			imagedestroy($cover);
-			imagedestroy($image);
-			imagedestroy($thumb);
-			
-			unlink($image_file);
-		}
 		
 		return new self($item_id, $category, $title, $description, $price, $weight, $quantity, time());
 	}

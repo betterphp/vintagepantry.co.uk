@@ -12,7 +12,8 @@ if (isset($_POST['titles'], $_POST['category_ids'], $_POST['prices'], $_POST['we
 		$description = trim($_POST['descriptions'][$i]);
 		$images = $_FILES['images']['tmp_name'][$i];
 		
-		item::add_new(new category($category_id, '', false), $title, $description, $images, $price, $weight, $quantity);
+		$item = item::add_new(new category($category_id, '', false), $title, $description, $price, $weight, $quantity);
+		$item->set_images($images);
 	}
 }
 
