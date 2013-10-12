@@ -4,10 +4,6 @@ include('core/init.inc.php');
 
 $page_title = 'The Vintage Pantry';
 
-if (!empty($titles[$_GET['page']])){
-	$page_title .= ' - ' . $titles[$_GET['page']];
-}
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
@@ -27,7 +23,7 @@ if (!empty($titles[$_GET['page']])){
 		}
 		
 		?>
-		<title><?php echo $page_title; ?></title>
+		<title>{PAGE_TITLE}</title>
 	</head>
 	<body>
 		<div id="nav-bg">&nbsp;</div>
@@ -60,3 +56,13 @@ if (!empty($titles[$_GET['page']])){
 		</div>
 	</body>
 </html>
+<?php
+
+$output = ob_get_contents();
+$output = str_replace('{PAGE_TITLE}', htmlentities($page_title), $output);
+
+ob_clean();
+
+echo $output;
+
+?>

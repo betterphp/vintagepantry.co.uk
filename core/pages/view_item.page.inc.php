@@ -4,6 +4,8 @@ if (!isset($_GET['item_id']) || ($item = item::fetch_by_id($_GET['item_id'])) ==
 	redirect('404.html', '404 Not Found');
 }
 
+$page_title = $item->get_title();
+
 $images = $item->get_images();
 $shipping_bands = $item->fetch_shipping_options();
 

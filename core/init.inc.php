@@ -94,10 +94,4 @@ if (end(explode('/', current(get_included_files()))) == 'index.php'){
 	$include_file = "{$core_path}/pages/{$_GET['page']}.page.inc.php";
 }
 
-$titles = array(
-	'shop'		=> 'Shop',
-	'about'		=> 'About',
-	'contact'	=> 'Contact',
-);
-
 ?>
