@@ -36,7 +36,7 @@ class paypal {
 		
 		file_put_contents($signed_content_file, $signed_content);
 		
-		openssl_pkcs7_encrypt($signed_content_file, $encrypted_content_file, file_get_contents("{$GLOBALS['core_path']}/paypal-public-sandbox.pem"), array(), PKCS7_BINARY);
+		openssl_pkcs7_encrypt($signed_content_file, $encrypted_content_file, file_get_contents("{$GLOBALS['core_path']}/paypal-public.pem"), array(), PKCS7_BINARY);
 		
 		$result = file_get_contents($encrypted_content_file);
 		$result = trim(substr($result, strpos($result, "\n\n")));
