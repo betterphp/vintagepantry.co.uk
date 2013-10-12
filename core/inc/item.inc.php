@@ -351,6 +351,8 @@ class item {
 			}
 		}
 		
+		$sql .= ' ORDER BY `items`.`item_time_created` DESC';
+		
 		$stmt = $mysql->prepare($sql);
 		
 		if (!empty($params)){
