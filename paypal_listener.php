@@ -35,4 +35,15 @@ sale::add_new($item, $payment, $buyer, $_POST['address_name'], $_POST['address_s
 
 $item->decrement_quantity();
 
+$message = <<<MSG
+Log in to view more details.
+MSG;
+
+$headers = array(
+	'From: ' . config::PAYPAL_EMAIL,
+	'Content-Type: text/plain'
+);
+
+mail(config::PAYPAL_EMAIL, 'Item Sold: ' . $item->get_title(), $message, implode("\r\n", $headers));
+
 ?>
