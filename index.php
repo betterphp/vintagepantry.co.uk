@@ -35,6 +35,14 @@ $page_title = 'The Vintage Pantry';
 				<a href="shop.html">Shop</a>
 				<a href="about.html">About</a>
 				<a href="contact.html">Contact</a>
+				
+				<?php
+				
+				if (isset($_SESSION['user'])){
+					echo '<a href="admin.html">Admin</a>';
+				}
+				
+				?>
 			</div>
 			<div id="social">
 				<a href="http://www.facebook.com/TheVintagePantry" title="Facebook"><img src="ext/img/facebook_ico.png" alt="Facebook" /></a>
