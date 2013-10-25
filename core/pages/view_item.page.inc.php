@@ -6,6 +6,16 @@ if (!isset($_GET['item_id']) || ($item = item::fetch_by_id($_GET['item_id'])) ==
 
 $page_title = $item->get_title();
 
+$og_vars = array(
+	'type'				=> 'product',
+	'title'				=> $item->get_title(),
+	'price:amount'		=> $item->get_price(),
+	'price:currency'	=> 'GBP',
+	'site_name'			=> 'The Vintage Pantry',
+	'description'		=> str_replace(array("\r", "\n"), '', $item->get_description()),
+	'availability'		=> ($item->get_quantity() > 0) ? 'instock' : 'out of stock',
+);
+
 $images = $item->get_images();
 $shipping_bands = $item->fetch_shipping_options();
 

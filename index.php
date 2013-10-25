@@ -23,6 +23,7 @@ $page_title = 'The Vintage Pantry';
 		}
 		
 		?>
+		{OG_META_TAGS}
 		<title>{PAGE_TITLE}</title>
 	</head>
 	<body>
@@ -66,8 +67,16 @@ $page_title = 'The Vintage Pantry';
 </html>
 <?php
 
+$meta = '';
+
+if (isset($og_vars)){
+	foreach ($og_vars as $key => $value){
+		$meta .= '<meta property="og:' . htmlentities($key) . '" content="' . htmlentities($value) . '" />';
+	}
+}
+
 $output = ob_get_contents();
-$output = str_replace('{PAGE_TITLE}', htmlentities($page_title), $output);
+$output = str_replace(array('{PAGE_TITLE}', '{OG_META_TAGS}'), array(htmlentities($page_title), $meta), $output);
 
 ob_clean();
 
