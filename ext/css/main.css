@@ -478,6 +478,8 @@ div.shop-product-images a {
 div.shop-product-images > a:first-child {
 	margin:		5px;
 	border:		solid 1px #e6b38f;
+	cursor:		-webkit-zoom-in;
+	cursor:		-moz-zoom-in;
 }
 
 div.shop-product-images div a {
