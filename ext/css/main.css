@@ -543,6 +543,12 @@ div.shop-product-details form input {
 	padding:	6px 0px;
 }
 
+div.item-shipping-info {
+	border-top:	solid 1px #e6b38f;
+	padding:	6px 0px 0px 0px;
+	color:		#555;
+}
+
 div.shop-filter {
 	float:		left;
 	width:		190px;

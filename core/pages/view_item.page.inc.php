@@ -82,5 +82,11 @@ $preview_index = (isset($_GET['preview_index']) && isset($images[$_GET['preview_
 		<div>
 			<?php echo format_description(htmlentities($item->get_description())); ?>
 		</div>
+		
+		<div class="item-shipping-info">
+			<p>Your item will be well-packaged and shipped within 24 hours of payment.</p>
+			<p>We use Royal Mail 24 to ensure that you receive your delivery quickly.</p>
+			<p>Thank you for shopping with The Vintage Pantry.</p>
+		</div>
 	</div>
 </div>
