@@ -64,7 +64,7 @@ $preview_index = (isset($_GET['preview_index']) && isset($images[$_GET['preview_
 									'cancel_return'	=> config::BASE_URL . 'view_item.html?item_id=' . $item->get_id(),
 								));
 								
-								echo '<option value="', $paypal_data, '">', $band->get_destination()->get_name(), ' (£', money_format('%.2i', $band->get_price()), ')</option>';
+								echo '<option value="', $paypal_data, '">P&P - ', $band->get_destination()->get_name(), ' (£', money_format('%.2i', $band->get_price()), ')</option>';
 							}
 							
 							?>
@@ -84,9 +84,10 @@ $preview_index = (isset($_GET['preview_index']) && isset($images[$_GET['preview_
 		</div>
 		
 		<div class="item-shipping-info">
-			<p>Your item will be well-packaged and shipped within 24 hours of payment.</p>
-			<p>We use Royal Mail 24 to ensure that you receive your delivery quickly.</p>
-			<p>Thank you for shopping with The Vintage Pantry!</p>
+			<p>Your item will be well-packaged and posted within 24 hours via Royal Mail 24.</p>
+			<a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup" target="_blank"><img src="ext/img/paypal_logo.png" alt="Secure payment through PayPal" /></a>
+			<p>Payments are processed securely through PayPal. All major cards accepted.</p>
+			<p>Thank you for visiting The Vintage Pantry!</p>
 		</div>
 	</div>
 </div>
