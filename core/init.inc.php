@@ -85,6 +85,7 @@ if (end(explode('/', current(get_included_files()))) == 'index.php'){
 		'about',
 		'contact',
 		'login',
+		'terms',
 	);
 	
 	if (!isset($_SESSION['user']) && !in_array($_GET['page'], $public_pages)){

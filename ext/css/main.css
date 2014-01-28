@@ -435,17 +435,17 @@ div.shop-product h3 {
 	text-overflow:	ellipsis;
 }
 
-div.shop-product a:link, div.shop-product a:visited {
+a:link, a:visited {
 	color:				#222;
 	text-decoration:	none;
 }
 
-div.shop-product a:hover {
+a:hover {
 	color:				#333;
 	text-decoration:	underline;
 }
 
-div.shop-product a:active {
+a:active {
 	color:		#444;
 }
 

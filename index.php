@@ -36,7 +36,6 @@ $page_title = 'The Vintage Pantry';
 				<a href="shop.html">Shop</a>
 				<a href="about.html">About</a>
 				<a href="contact.html">Contact</a>
-				
 				<?php
 				
 				if (isset($_SESSION['user'])){
@@ -54,7 +53,7 @@ $page_title = 'The Vintage Pantry';
 			<div id="content">
 				<?php include($include_file); ?>
 			</div>
-			<div id="copy">&copy; 2012 The Vintage Pantry</div>
+			<div id="copy">&copy; 2012 The Vintage Pantry | <a href="terms.html" title="View our terms &amp; conditions">Terms &amp; conditions</a></div>
 		</div>
 		<div id="blank">&nbsp;</div>
 		
