@@ -40,43 +40,45 @@ $preview_index = (isset($_GET['preview_index']) && isset($images[$_GET['preview_
 	<div class="product-details">
 		<div>
 			<h2><?php echo htmlentities($item->get_title()); ?></h2>
-			<?php
-			
-			if ($item->get_quantity() > 0){
-				?>
-				<form action="https://www.<?php echo paypal::BASE_DOMAIN; ?>/cgi-bin/webscr" method="post">
-					<div>
-						<select name="encrypted" id="postage">
-							<?php
+			<form action="https://www.<?php echo paypal::BASE_DOMAIN; ?>/cgi-bin/webscr" method="post">
+				<div>
+					<select name="encrypted" id="postage"<?php if ($item->get_quantity() == 0) echo ' disabled="disabled"'; ?>>
+						<?php
+						
+						foreach ($shipping_bands as $band){
+							$paypal_data = paypal::create_encryted_button(array(
+								'cmd'			=> '_xclick',
+								'business'		=> config::PAYPAL_EMAIL,
+								'item_name'		=> $item->get_title(),
+								'item_number'	=> $item->get_id(),
+								'amount'		=> $item->get_price(),
+								'shipping'		=> $band->get_price(),
+								'currency_code'	=> 'GBP',
+								'no_shipping'	=> 2,
+								'notify_url'	=> config::BASE_URL . 'paypal_listener.php',
+								'return'		=> config::BASE_URL . 'shop.html?category_id=' . $item->get_category()->get_id(),
+								'cancel_return'	=> config::BASE_URL . 'view_item.html?item_id=' . $item->get_id(),
+							));
 							
-							foreach ($shipping_bands as $band){
-								$paypal_data = paypal::create_encryted_button(array(
-									'cmd'			=> '_xclick',
-									'business'		=> config::PAYPAL_EMAIL,
-									'item_name'		=> $item->get_title(),
-									'item_number'	=> $item->get_id(),
-									'amount'		=> $item->get_price(),
-									'shipping'		=> $band->get_price(),
-									'currency_code'	=> 'GBP',
-									'no_shipping'	=> 2,
-									'notify_url'	=> config::BASE_URL . 'paypal_listener.php',
-									'return'		=> config::BASE_URL . 'shop.html?category_id=' . $item->get_category()->get_id(),
-									'cancel_return'	=> config::BASE_URL . 'view_item.html?item_id=' . $item->get_id(),
-								));
-								
-								echo '<option value="', $paypal_data, '">P&P - ', $band->get_destination()->get_name(), ' (£', money_format('%.2i', $band->get_price()), ')</option>';
-							}
-							
-							?>
-						</select>
+							echo '<option value="', $paypal_data, '">P&P - ', $band->get_destination()->get_name(), ' (£', money_format('%.2i', $band->get_price()), ')</option>';
+						}
+						
+						?>
+					</select>
+					<?php
+					
+					if ($item->get_quantity() == 0){
+						echo '<input type="submit" class="button" value="Sold" disabled="disabled" />';
+					}else{
+						?>
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="submit" class="button" value="Buy now £<?php echo money_format('%.2i', $item->get_price()); ?>" />
-					</div>
-				</form>
-				<?php
-			}
-			
-			?>
+						<?php
+					}
+					
+					?>
+				</div>
+			</form>
 		</div>
 		
 		<div>
