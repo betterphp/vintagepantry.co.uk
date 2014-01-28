@@ -3,7 +3,7 @@
 <div id="about-text">
 	<p class="handwritten large title">Hello</p>
 	
-	<p>Here at The Vintage Pantry we offer customers the perfect vintage.</p>
+	<p>Welcome to The Vintage Pantry.</p>
 	
 	<p>Genuine vintage and retro kitchenware and homewares from across the decades are carefully sourced and hand-picked by us for their high quality, excellent condition, and style value.</p>
 	
