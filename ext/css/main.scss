@@ -322,17 +322,17 @@ div.msg:last-child {
 }
 
 div.msg.info {
-	background:	#edf url('../img/info_ico.png') no-repeat 8px center;
+	background:	#edf url('../../img/info_ico.png') no-repeat 8px center;
 	border:		solid 1px #98f;
 }
 
 div.msg.error {
-	background:	#fcc url('../img/error_ico.png') no-repeat 8px center;
+	background:	#fcc url('../../img/error_ico.png') no-repeat 8px center;
 	border:		solid 1px #f77;
 }
 
 div.msg.success {
-	background:	#aea url('../img/success_ico.png') no-repeat 8px center;
+	background:	#aea url('../../img/success_ico.png') no-repeat 8px center;
 	border:		solid 1px #6b6;
 }
 
@@ -389,7 +389,7 @@ a.button:first-child, input.button:first-child {
 	float:		left;
 	width:		450px;
 	height:		436px;
-	background:	url('../img/about.png') no-repeat;
+	background:	url('../../img/about.png') no-repeat;
 	
 	box-shadow:			0px 0px 5px 1px #412405 inset;
 	-moz-box-shadow:	0px 0px 5px 1px #412405 inset;

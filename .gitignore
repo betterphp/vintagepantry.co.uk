@@ -6,8 +6,13 @@
 # User files
 /core/user_content
 
+# NodeJS / Grunt
+node_modules
+.sass-cache
+
 # System files
 /core/config.inc.php
 /core/error.log
 /core/tmp
 /core/*.pem
+

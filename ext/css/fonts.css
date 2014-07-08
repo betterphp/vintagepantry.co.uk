@@ -1,0 +1,37 @@
+@font-face {
+	font-family:	'Britannic Bold';
+	src:			local('Britannic Bold'),
+					url('../../font/Britanic.ttf') format('truetype'),
+					url('../../font/Britanic.eot') format('opentype');
+}
+
+@font-face {
+	font-family:	'Poly';
+	src:			local('Poly'),
+					url('../../font/Poly.ttf') format('truetype'),
+					url('../../font/Poly.eot') format('opentype');
+}
+
+/* http://www.fontsquirrel.com/fonts/voltaire */
+@font-face {
+	font-family:	'voltaireregular';
+	src:			url('../../font/voltaire-regular.eot');
+	src:			url('../../font/voltaire-regular.eot?#iefix') format('embedded-opentype'),
+					url('../../font/voltaire-regular.woff') format('woff'),
+					url('../../font/voltaire-regular.ttf') format('truetype'),
+					url('../../font/voltaire-regular.svg#voltaireregular') format('svg');
+	font-weight:	normal;
+	font-style:		normal;
+}
+
+/* http://www.fontsquirrel.com/fonts/Jinky */
+@font-face {
+	font-family:	'jinkyregular';
+	src:			url('../../font/JINKY.eot');
+	src:			url('../../font/JINKY.eot?#iefix') format('embedded-opentype'),
+					url('../../font/JINKY.woff') format('woff'),
+					url('../../font/JINKY.ttf') format('truetype'),
+					url('../../font/JINKY.svg#jinkyregular') format('svg');
+	font-weight:	normal;
+	font-style:		normal;
+}

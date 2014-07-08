@@ -10,8 +10,7 @@ $page_title = 'The Vintage Pantry';
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="shortcut icon" href="ext/img/favicon.ico" />
-		<link rel="stylesheet" media="all" type="text/css" href="ext/css/font.css" />
-		<link rel="stylesheet" media="all" type="text/css" href="ext/css/main.css" />
+		<link rel="stylesheet" media="all" type="text/css" href="ext/css/build/style.min.css" />
 		<script type="text/javascript" src="ext/jsc/lib.js"></script>
 		<script type="text/javascript" src="ext/jsc/header.js"></script>
 		<?php
