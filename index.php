@@ -14,7 +14,7 @@ $page_title = 'The Vintage Pantry';
 		<script type="text/javascript" src="ext/jsc/build/main.min.js"></script>
 		<?php
 		
-		$page_script = "ext/jsc/build/{$_GET['page']}.page.js";
+		$page_script = "ext/jsc/build/{$_GET['page']}.page.min.js";
 		
 		if (file_exists($page_script)){
 			echo '<script type="text/javascript" src="', $page_script, '"></script>';
