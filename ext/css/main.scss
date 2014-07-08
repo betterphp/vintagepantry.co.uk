@@ -1,7 +1,7 @@
 html, body {
 	margin:			0px;
 	padding:		0px;
-	font-family:	'Poly', serif;
+	font-family:	poly, serif;
 	color:			#000;
 }
 
@@ -24,7 +24,7 @@ p {
 	padding:	4px 0px;
 	
 	&.handwritten {
-		font-family:	'jinkyregular', serif;
+		font-family:	jinky, serif;
 		font-size:		30px;
 		line-height:	30px;
 		
@@ -183,7 +183,8 @@ a {
 		line-height:		93px;
 		width:				110px;
 		font-size:			19px;
-		font-family:		'Britannic Bold';
+		font-family:		britanic;
+		font-weight:		bold;
 		text-align:			center;
 		text-decoration:	none;
 		text-shadow:		#822 2px 2px 1px;
@@ -377,7 +378,7 @@ div.shop-product {
 	overflow:		hidden;
 	border:			solid 1px #e6b38f;
 	background:		#f5ede5;
-	font-family:	'voltaireregular', sans-serif;
+	font-family:	voltaire, sans-serif;
 	
 	h3 {
 		display:		block;
