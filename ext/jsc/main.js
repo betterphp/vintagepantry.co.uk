@@ -21,3 +21,16 @@ function getWindowSize(){
 		};
 	}
 }
+
+window.addEventListener('DOMContentLoaded', function(event){
+	var links = document.getElementById('social').getElementsByTagName('a');
+	
+	var handleClick = function(event){
+		window.open(this.href);
+		event.preventDefault();
+	};
+	
+	for (var i = 0; i < links.length; ++i){
+		links[i].addEventListener('click', handleClick, false);
+	}
+}, false);

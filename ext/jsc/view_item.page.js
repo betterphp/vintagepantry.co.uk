@@ -4,17 +4,19 @@ window.addEventListener('DOMContentLoaded', function(event){
 	
 	var thumbLinks = previewLink.nextElementSibling.getElementsByTagName('a');
 	
+	var handleClick = function(event){
+		var previewPath = this.getAttribute('data-preview-path');
+		var fullPath = this.getAttribute('data-full-path');
+		
+		if (previewPath && fullPath){
+			preview.src = previewPath;
+			previewLink.href = fullPath;
+			event.preventDefault();
+		}
+	};
+	
 	for (var i = 0; i < thumbLinks.length; ++i){
-		thumbLinks[i].addEventListener('click', function(event){
-			var previewPath = this.getAttribute('data-preview-path');
-			var fullPath = this.getAttribute('data-full-path');
-			
-			if (previewPath && fullPath){
-				preview.src = previewPath;
-				previewLink.href = fullPath;
-				event.preventDefault();
-			}
-		}, false);
+		thumbLinks[i].addEventListener('click', handleClick, false);
 	}
 	
 	previewLink.addEventListener('click', function(event){

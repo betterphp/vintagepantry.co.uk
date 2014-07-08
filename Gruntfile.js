@@ -38,10 +38,19 @@ module.exports = function(grunt) {
 		},
 		
 		uglify: {
-			target: {
+			main: {
 				files: {
-					
+					'ext/jsc/build/main.min.js': 'ext/jsc/main.js'
 				}
+			},
+			pages: {
+				files: [{
+					expand: true,
+					cwd: 'ext/jsc',
+					src: ['*.page.js', '*/*.page.js'],
+					dest: 'ext/jsc/build',
+					ext: '.page.min.js'
+				}]
 			}
 		},
 		

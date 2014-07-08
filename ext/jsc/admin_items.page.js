@@ -10,7 +10,9 @@ window.addEventListener('DOMContentLoaded', function(event){
 		
 		var inputs = template.getElementsByTagName('input');
 		
-		for (var i = 0; i < inputs.length; ++i){
+		var i;
+		
+		for (i = 0; i < inputs.length; ++i){
 			if (inputs[i].type == 'text'){
 				inputs[i].value = '';
 			}else if (inputs[i].type == 'file'){
@@ -31,14 +33,14 @@ window.addEventListener('DOMContentLoaded', function(event){
 		
 		var textareas = template.getElementsByTagName('textarea');
 		
-		for (var i = 0; i < textareas.length; ++i){
+		for (i = 0; i < textareas.length; ++i){
 			textareas[i].value = '';
 			textareas[i].name = textareas[i].name.replace('[0]', '[' + (sections.length - 1) + ']');
 		}
 		
 		var selects = template.getElementsByTagName('select');
 		
-		for (var i = 0; i < selects.length; ++i){
+		for (i = 0; i < selects.length; ++i){
 			selects[i].selectedIndex = 0;
 			selects[i].name = selects[i].name.replace('[0]', '[' + (sections.length - 1) + ']');
 		}
@@ -59,20 +61,22 @@ window.addEventListener('DOMContentLoaded', function(event){
 	document.getElementById('item_form').addEventListener('submit', function(event){
 		var sections = document.querySelectorAll('#item_form > div');
 		
-		for (var i = 0; i < sections.length - 1; ++i){
+		var i, c;
+		
+		for (i = 0; i < sections.length - 1; ++i){
 			var inputs = sections[i].getElementsByTagName('input');
 			var selects = sections[i].getElementsByTagName('select');
 			
-			for (var c = 0; c < inputs.length; ++c){
+			for (c = 0; c < inputs.length; ++c){
 				if (inputs[c].type == 'text'){
-					if (inputs[c].value == ''){
+					if (inputs[c].value === ''){
 						alert('Empty field for item ' + (i + 1));
 						event.preventDefault();
 						inputs[c].focus();
 						return;
 					}
 				}else if (inputs[c].type == 'file'){
-					if (inputs[c].value == ''){
+					if (inputs[c].value === ''){
 						alert('No images selected for item ' + (i + 1));
 						event.preventDefault();
 						return;
@@ -80,8 +84,8 @@ window.addEventListener('DOMContentLoaded', function(event){
 				}
 			}
 			
-			for (var c = 0; c < selects.length; ++c){
-				if (selects[c].selectedIndex == 0){
+			for (c = 0; c < selects.length; ++c){
+				if (selects[c].selectedIndex === 0){
 					alert('No category selected for item ' + (i + 1));
 					event.preventDefault();
 					return;
